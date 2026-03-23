@@ -9,14 +9,22 @@ WHERE anno_di_nascita=1982
 ORDER BY nome ASC 
 
 3.
-SELECT iva, COUNT (*) FROM public.fatture WHERE iva=22 GROUP BY iva
+SELECT iva, COUNT (*) FROM public.fatture WHERE iva=20 GROUP BY iva
 
 oppure senza la colonna iva:
 
-SELECT COUNT (*) FROM public.fatture WHERE iva=22 
+SELECT COUNT (*) FROM public.fatture WHERE iva=20 
 
 4.
 SELECT * FROM public.fatture JOIN clienti ON fatture.id_cliente=clienti.numero_cliente WHERE importo<1000 
 
 5.
 SELECT numero_fattura, importo, iva, data_fattura, denominazione FROM public.fatture JOIN fornitori ON fatture.numero_fornitore=fornitori.numero_fornitore
+
+6. visualizzando l'anno:
+SELECT EXTRACT(YEAR FROM data_fattura), COUNT(*) FROM public.fatture GROUP BY EXTRACT(YEAR FROM data_fattura)
+
+senza vedere l'anno:
+SELECT COUNT(*) FROM public.fatture GROUP BY EXTRACT(YEAR FROM data_fattura)
+
+
