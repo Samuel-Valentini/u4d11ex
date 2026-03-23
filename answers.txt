@@ -14,3 +14,6 @@ SELECT iva, COUNT (*) FROM public.fatture WHERE iva=22 GROUP BY iva
 oppure senza la colonna iva:
 
 SELECT COUNT (*) FROM public.fatture WHERE iva=22 
+
+4.
+SELECT * FROM public.fatture JOIN clienti ON fatture.id_cliente=clienti.numero_cliente WHERE importo<1000 
