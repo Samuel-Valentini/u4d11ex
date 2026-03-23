@@ -1,41 +1,43 @@
 1. 
-SELECT * FROM public.clienti
+SELECT * FROM clienti
 WHERE nome='Mario'
-ORDER BY nome ASC 
 
 2.
-SELECT nome, cognome FROM public.clienti
+SELECT nome, cognome FROM clienti
 WHERE anno_di_nascita=1982
 ORDER BY nome ASC 
 
 3.
-SELECT iva, COUNT (*) FROM public.fatture WHERE iva=20 GROUP BY iva
+SELECT iva, COUNT (*) FROM fatture WHERE iva=20 GROUP BY iva
 
 oppure senza la colonna iva:
 
-SELECT COUNT (*) FROM public.fatture WHERE iva=20 
+SELECT COUNT (*) FROM fatture WHERE iva=20 
 
 4.
-SELECT * FROM public.fatture JOIN clienti ON fatture.id_cliente=clienti.numero_cliente WHERE importo<1000 
+SELECT * FROM public.prodotti WHERE EXTRACT(YEAR FROM data_attivazione)=2020 AND (in_produzione=true OR in_commercio=true)
 
 5.
-SELECT numero_fattura, importo, iva, data_fattura, denominazione FROM public.fatture JOIN fornitori ON fatture.numero_fornitore=fornitori.numero_fornitore
+SELECT * FROM fatture JOIN clienti ON fatture.id_cliente=clienti.numero_cliente WHERE importo<1000 
 
-6. visualizzando l'anno:
-SELECT EXTRACT(YEAR FROM data_fattura), COUNT(*) FROM public.fatture GROUP BY EXTRACT(YEAR FROM data_fattura)
+6.
+SELECT numero_fattura, importo, iva, data_fattura, denominazione FROM fatture JOIN fornitori ON fatture.numero_fornitore=fornitori.numero_fornitore
+
+7. visualizzando l'anno:
+SELECT EXTRACT(YEAR FROM data_fattura), COUNT(*) FROM fatture WHERE iva=20 GROUP BY EXTRACT(YEAR FROM data_fattura)
 
 senza vedere l'anno:
-SELECT COUNT(*) FROM public.fatture GROUP BY EXTRACT(YEAR FROM data_fattura)
-
-7.
-SELECT EXTRACT(YEAR FROM data_fattura), COUNT(*), SUM(importo) FROM public.fatture GROUP BY EXTRACT(YEAR FROM data_fattura)
+SELECT COUNT(*) FROM fatture WHERE iva=20 GROUP BY EXTRACT(YEAR FROM data_fattura)
 
 8.
-SELECT EXTRACT(YEAR FROM data_fattura) FROM public.fatture
+SELECT EXTRACT(YEAR FROM data_fattura), COUNT(*), SUM(importo) FROM fatture GROUP BY EXTRACT(YEAR FROM data_fattura)
+
+9.
+SELECT EXTRACT(YEAR FROM data_fattura) FROM fatture
 WHERE tipologia='assistenza' GROUP BY EXTRACT(YEAR FROM data_fattura) HAVING COUNT(*)>2
 
-9. 
-SELECT regione, SUM(importo) FROM public.fatture 
+10. 
+SELECT regione, SUM(importo) FROM fatture 
 JOIN clienti ON fatture.id_cliente=clienti.numero_cliente 
 JOIN regioni ON clienti.regione_residenza=regioni.id_regione
 GROUP BY regione
