@@ -17,3 +17,6 @@ SELECT COUNT (*) FROM public.fatture WHERE iva=22
 
 4.
 SELECT * FROM public.fatture JOIN clienti ON fatture.id_cliente=clienti.numero_cliente WHERE importo<1000 
+
+5.
+SELECT numero_fattura, importo, iva, data_fattura, denominazione FROM public.fatture JOIN fornitori ON fatture.numero_fornitore=fornitori.numero_fornitore
