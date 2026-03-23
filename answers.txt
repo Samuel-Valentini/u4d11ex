@@ -1,0 +1,5 @@
+1. 
+SELECT nome FROM public.clienti
+WHERE nome='Mario'
+ORDER BY nome ASC 
+
