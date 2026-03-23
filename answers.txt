@@ -38,4 +38,4 @@ WHERE tipologia='assistenza' GROUP BY EXTRACT(YEAR FROM data_fattura) HAVING COU
 SELECT regione, SUM(importo) FROM public.fatture 
 JOIN clienti ON fatture.id_cliente=clienti.numero_cliente 
 JOIN regioni ON clienti.regione_residenza=regioni.id_regione
-GROUP by regione
+GROUP BY regione
