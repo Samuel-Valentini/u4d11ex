@@ -15,7 +15,7 @@ oppure senza la colonna iva:
 SELECT COUNT (*) FROM fatture WHERE iva=20 
 
 4.
-SELECT * FROM public.prodotti WHERE EXTRACT(YEAR FROM data_attivazione)=2020 AND (in_produzione=true OR in_commercio=true)
+SELECT * FROM public.prodotti WHERE EXTRACT(YEAR FROM data_attivazione)=2017 AND (in_produzione=true OR in_commercio=true)
 
 5.
 SELECT * FROM fatture JOIN clienti ON fatture.id_cliente=clienti.numero_cliente WHERE importo<1000 
@@ -41,3 +41,8 @@ SELECT regione, SUM(importo) FROM fatture
 JOIN clienti ON fatture.id_cliente=clienti.numero_cliente 
 JOIN regioni ON clienti.regione_residenza=regioni.id_regione
 GROUP BY regione
+
+11.
+SELECT COUNT(DISTINCT numero_cliente) FROM public.clienti 
+JOIN fatture ON clienti.numero_cliente=fatture.id_cliente
+WHERE anno_di_nascita=1980 AND importo>50
