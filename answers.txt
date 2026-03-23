@@ -7,3 +7,10 @@ ORDER BY nome ASC
 SELECT nome, cognome FROM public.clienti
 WHERE anno_di_nascita=1982
 ORDER BY nome ASC 
+
+3.
+SELECT iva, COUNT (*) FROM public.fatture WHERE iva=22 GROUP BY iva
+
+oppure senza la colonna iva:
+
+SELECT COUNT (*) FROM public.fatture WHERE iva=22 
