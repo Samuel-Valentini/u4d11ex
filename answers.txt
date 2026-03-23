@@ -30,3 +30,6 @@ SELECT COUNT(*) FROM public.fatture GROUP BY EXTRACT(YEAR FROM data_fattura)
 7.
 SELECT EXTRACT(YEAR FROM data_fattura), COUNT(*), SUM(importo) FROM public.fatture GROUP BY EXTRACT(YEAR FROM data_fattura)
 
+8.
+SELECT EXTRACT(YEAR FROM data_fattura) FROM public.fatture
+WHERE tipologia='assistenza' GROUP BY EXTRACT(YEAR FROM data_fattura) HAVING COUNT(*)>2
