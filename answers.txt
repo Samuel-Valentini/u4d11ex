@@ -46,3 +46,8 @@ GROUP BY regione
 SELECT COUNT(DISTINCT numero_cliente) FROM public.clienti 
 JOIN fatture ON clienti.numero_cliente=fatture.id_cliente
 WHERE anno_di_nascita=1980 AND importo>50
+
+se voglio vedere l'anno:
+SELECT anno_di_nascita, COUNT(DISTINCT numero_cliente) FROM public.clienti 
+JOIN fatture ON clienti.numero_cliente=fatture.id_cliente
+WHERE anno_di_nascita=1980 AND importo>50 GROUP BY anno_di_nascita
