@@ -33,3 +33,9 @@ SELECT EXTRACT(YEAR FROM data_fattura), COUNT(*), SUM(importo) FROM public.fattu
 8.
 SELECT EXTRACT(YEAR FROM data_fattura) FROM public.fatture
 WHERE tipologia='assistenza' GROUP BY EXTRACT(YEAR FROM data_fattura) HAVING COUNT(*)>2
+
+9. 
+SELECT regione, SUM(importo) FROM public.fatture 
+JOIN clienti ON fatture.id_cliente=clienti.numero_cliente 
+JOIN regioni ON clienti.regione_residenza=regioni.id_regione
+GROUP by regione
